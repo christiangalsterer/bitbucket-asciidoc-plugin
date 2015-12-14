@@ -1,0 +1,39 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <client-resource key="asciidoc-file-handler" name="Asciidoc Handler">
+        <resource type="download" name="asciidoc-handler.js" location="/static/asciidoc-handler/asciidoc-handler.js"/>
+
+        <dependency>com.atlassian.bitbucket.server.bitbucket-web:global</dependency>
+        <dependency>com.atlassian.bitbucket.server.bitbucket-web-api:file-handlers</dependency>
+
+        <context>bitbucket.feature.files.fileHandlers</context>
+    </client-resource>
+
+    <client-resource key="asciidoc-view" name="Asciidoc View">
+        <directory location="/static/asciidoc-view" />
+
+        <dependency>com.atlassian.bitbucket.server.bitbucket-web:global</dependency>
+        <dependency>${project.groupId}.${project.artifactId}:asciidoc-renderer</dependency>
+    </client-resource>
+
+    <client-resource key="asciidoc-renderer" name="Asciidoc Renderer">
+        <resource type="download" name="asciidoc-renderer.js" location="/static/asciidoc-renderer/asciidoc-renderer.js"/>
+
+        <dependency>com.atlassian.bitbucket.server.bitbucket-web:global</dependency>
+        <dependency>${project.groupId}.${project.artifactId}:asciidoctor</dependency>
+    </client-resource>
+
+    <client-resource key="asciidoctor" name="Asciidoctor JS Library">
+        <resource type="download" name="asciidoctor-all.js" location="/static/lib/asciidoctor/asciidoctor-all.js" />
+
+        <directory location="/static/lib/asciidoctor" />
+    </client-resource>
+
+</atlassian-plugin>

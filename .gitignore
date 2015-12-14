@@ -1,0 +1,24 @@
+# Eclipse files
+*.classpath
+*.project
+*.settings
+
+# Intellij files
+.idea
+*.iml
+*.eml
+*.ipr
+*.iws
+out/
+.home*/
+atlassian-ide-plugin.xml
+
+
+# maven stuff
+target
+
+# other
+*~
+*.swp
+*.DS_Store
+*node_modules/

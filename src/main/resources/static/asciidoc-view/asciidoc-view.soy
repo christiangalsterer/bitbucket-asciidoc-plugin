@@ -1,0 +1,54 @@
+{namespace bitbucket.feature.fileContent.asciidoc}
+
+/**
+ *
+ */
+{template .view}
+    <div class="asciidoc-view"></div>
+{/template}
+
+/**
+ *
+ */
+{template .toolbar}
+    <div class="asciidoc-toolbar-container">
+        {call aui.toolbar2.toolbar2}
+            {param content}
+                {call aui.toolbar2.item}
+                    {param item: 'primary' /}
+                    {param extraClasses : 'asciidoc-view-toggle' /}
+                    {param content}
+                        {call .toggleButtons /}
+                    {/param}
+                {/call}
+            {/param}
+            {param extraClasses: 'asciidoc-view-toolbar' /}
+        {/call}
+   </div>
+{/template}
+
+/**
+ *
+ */
+{template .toggleButtons}
+    {call aui.buttons.buttons}
+        {param content}
+            {call aui.buttons.button}
+                {param id: 'asciidoc-wireframe' /}
+                {param text: 'Wireframe' /}
+                {param extraAttributes: [ 'data-mode' : 'wireframe' ] /}
+            {/call}
+            {call aui.buttons.button}
+                {param id: 'asciidoc-surface' /}
+                {param text: 'Surface' /}
+                {param isPressed: true /}
+                {param extraAttributes: [ 'data-mode' : 'surface' ] /}
+            {/call}
+            {call aui.buttons.button}
+                {param id: 'asciidoc-solid' /}
+                {param text: 'Solid' /}
+                {param extraAttributes: [ 'data-mode' : 'solid' ] /}
+            {/call}
+        {/param}
+    {/call}
+{/template}
