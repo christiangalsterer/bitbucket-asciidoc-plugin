@@ -4,8 +4,7 @@ define('asciidoc/asciidoc-handler', [
     $
 ) {
     "use strict";
-
-    var asciiDocViewResourceKey = 'org.christiangalsterer.bitbucket-asciidoc-plugin:asciidoc-view';
+    var asciiDocViewResourceKey = 'org.christiangalsterer.bitbucket.server.bitbucket-asciidoc-plugin:asciidoc-view';
 
     /**
      * Extract the extension from file name
@@ -38,14 +37,16 @@ define('asciidoc/asciidoc-handler', [
         var fileChange = options.fileChange;
 
         // Check if asciidoc file
-        var isAsciidoc = getFileExtension(fileChange.path) === 'asciidoc';
+        var extension = getFileExtension(fileChange.path);
+        var isAsciidoc = false;
+        if (extension.match('asciidoc|adoc|ad|asc|txt'))
+            isAsciidoc = true;
 
         if (isAsciidoc && options.contentMode === 'diff') {
             // Not supported
-
         } else if (isAsciidoc && options.contentMode === 'source') {
 
-            // Asynchronously load stl-view web-resources (js/css/soy)
+            // Asynchronously load asciidoc-view web-resources (js/css/soy)
             var deferred = new $.Deferred();
 
             WRM.require('wr!' + asciiDocViewResourceKey).done(function() {
@@ -53,9 +54,6 @@ define('asciidoc/asciidoc-handler', [
                 var AsciiDocView = require('asciidoc/asciidoc-view');
                 var fileUrl = getRawUrl(fileChange);
                 var view = new AsciiDocView(options.$container, fileUrl);
-
-                // This class gets added to the file-content
-                view.extraClasses = 'asciidoc-file';
 
                 deferred.resolve(view);
             }).fail(function() {
