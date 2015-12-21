@@ -18,6 +18,13 @@ Coming Soon!
 
 The 2.x.x versions are for Bitbucket Server &gt;= 4.0.0
 
+=== 2.1.0 (2015-12-21)
+
+This version includes the following changes:
+
+* Syntax highlighting using https://highlightjs.org[highlight.js]
+* Improved layout to be closer to Bitbucket Server Markdown support
+
 === 2.0.0 (2015-12-21)
 
 This is the first release of the add-on. It provides the following features:

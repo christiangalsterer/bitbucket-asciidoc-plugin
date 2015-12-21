@@ -44,14 +44,15 @@ define('asciidoc/asciidoc-renderer', [
         });
 
         try {
-            var attributes =  Opal.hash({'linkcss': '', 'copycss!': '', 'showtitle': ''});
-            var options = Opal.hash({attributes: attributes});
+            var attributes =  Opal.hash({'highlightjsdir':'http://cdn.jsdelivr.net/highlight.js/9.0.0/highlight.min.js','safe': 'unsafe', 'backend': 'html5', 'source-highlighter': 'highlightjs', 'linkcss!': '', 'copycss!': '', 'showtitle': ''});
+            var options = Opal.hash({'backend':'html5', safe: 'unsafe', attributes: attributes});
             var html = Opal.Asciidoctor.$convert(content, options);
             this.$container.html(html);
         } catch (e) {
             return;
         }
     };
+
 
     AsciiDocRenderer.prototype.destroy = function() {
         $(window).off('resize', this._onWindowResize);

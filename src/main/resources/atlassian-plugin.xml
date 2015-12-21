@@ -32,7 +32,6 @@
 
     <client-resource key="asciidoctor" name="Asciidoctor JS Library">
         <resource type="download" name="asciidoctor-all.js" location="/static/lib/asciidoctor/asciidoctor-all.js" />
-
         <directory location="/static/lib/asciidoctor" />
     </client-resource>
 
