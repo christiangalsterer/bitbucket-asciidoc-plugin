@@ -44,15 +44,72 @@ define('asciidoc/asciidoc-renderer', [
         });
 
         try {
-            var attributes =  Opal.hash({'highlightjsdir':'http://cdn.jsdelivr.net/highlight.js/9.0.0/highlight.min.js','safe': 'unsafe', 'backend': 'html5', 'source-highlighter': 'highlightjs', 'linkcss!': '', 'copycss!': '', 'showtitle': ''});
-            var options = Opal.hash({'backend':'html5', safe: 'unsafe', attributes: attributes});
+            var attributes =  Opal.hash({'source-highlighter': 'highlightjs', 'stylesheet': 'idea.css', 'linkcss!': '', 'copycss!': '', 'showtitle': ''});
+            var options = Opal.hash({'to_file': false, 'safe': 'secure', attributes: attributes});
             var html = Opal.Asciidoctor.$convert(content, options);
             this.$container.html(html);
+            postProcess(this.$container, options);
         } catch (e) {
             return;
         }
     };
 
+
+    function postProcess($content, options) {
+
+        var attributes = [];
+
+        if ((options['$key?']("attributes")) === true ) {
+            attributes = options['$[]']("attributes")
+        }
+
+        applyHighlighting($content, 'highlightjs', '');
+    }
+
+    function applyHighlighting($content, highlighter, sourceLanguage) {
+        var AVAILABLE_HIGHLIGHTERS = {
+            'highlightjs': highlightUsingHighlightjs,
+            'highlight.js': highlightUsingHighlightjs
+        };
+
+        if (sourceLanguage) {
+            $('code.src', $content).each(function () {
+                $(this).data('lang', sourceLanguage).addClass('src-' + sourceLanguage).removeClass('src');
+            });
+        }
+
+        if (highlighter in AVAILABLE_HIGHLIGHTERS) {
+            AVAILABLE_HIGHLIGHTERS[highlighter]($content);
+        } else {
+            console.log('Unknown syntax highlighter "' + highlighter + '", using "' + DEFAULT_HIGHLIGHTER + '" instead.');
+            // not in IE8
+            if ('keys' in Object) {
+                console.log('Recognized highlighter names: ' + Object.keys(AVAILABLE_HIGHLIGHTERS));
+            }
+            AVAILABLE_HIGHLIGHTERS['highlightjs']($content);
+        }
+    }
+
+    function highlightUsingHighlightjs($content) {
+        $('code[class^="language-"],code[class^="src-"]', $content).each(function (i, e) {
+            e.className = e.className.replace('src-', 'language-');
+            hljs.highlightBlock(e);
+            var $e = $(e);
+            var $parent = $e.parent('pre.highlight');
+            var language = $e.data('lang');
+            if (!language) {
+                var matches = e.className.match(/language-([a-z]*)/);
+                if (matches.length === 2) {
+                    language = matches[1];
+                }
+            }
+            if ($parent.length === 0) {
+                $e.css('display', 'inline').addClass(language).css('padding', 0);
+            } else {
+                $parent.addClass(language);
+            }
+        });
+    }
 
     AsciiDocRenderer.prototype.destroy = function() {
         $(window).off('resize', this._onWindowResize);

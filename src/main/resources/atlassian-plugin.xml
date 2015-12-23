@@ -28,11 +28,17 @@
 
         <dependency>com.atlassian.bitbucket.server.bitbucket-web:global</dependency>
         <dependency>${project.groupId}.${project.artifactId}:asciidoctor</dependency>
+        <dependency>${project.groupId}.${project.artifactId}:highlight</dependency>
     </client-resource>
 
     <client-resource key="asciidoctor" name="Asciidoctor JS Library">
         <resource type="download" name="asciidoctor-all.js" location="/static/lib/asciidoctor/asciidoctor-all.js" />
         <directory location="/static/lib/asciidoctor" />
+    </client-resource>
+
+    <client-resource key="highlight" name="Highlight JS Library">
+        <resource type="download" name="highlight.js" location="/static/lib/highlight/highlight.js" />
+        <directory location="/static/lib/highlight" />
     </client-resource>
 
 </atlassian-plugin>
