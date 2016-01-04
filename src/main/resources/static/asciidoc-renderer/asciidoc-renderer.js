@@ -39,13 +39,13 @@ define('asciidoc/asciidoc-renderer', [
             success : function(data){
                 content = data;
             },
-            'error': function (xhr, status, errorMessage) {
+            error: function (xhr, status, errorMessage) {
             }
         });
 
         try {
             var attributes =  Opal.hash({'source-highlighter': 'highlightjs', 'stylesheet': 'idea.css', 'linkcss!': '', 'copycss!': '', 'showtitle': ''});
-            var options = Opal.hash({'to_file': false, 'safe': 'secure', attributes: attributes});
+            var options = Opal.hash({'to_file': false, 'safe': 'secure', 'attributes': attributes});
             var html = Opal.Asciidoctor.$convert(content, options);
             this.$container.html(html);
             postProcess(this.$container, options);
