@@ -1,6 +1,6 @@
 = Introduction
 
-An add-on for https://www.atlassian.com/software/bitbucket/server[Atlassian Bitbucket Server] to render AsciiDoc files.
+An add-on for https://www.atlassian.com/software/bitbucket/server[Atlassian Bitbucket Server] to render AsciiDoc files in the source view panel.
 
 = Installation
 
@@ -18,7 +18,7 @@ Coming Soon!
 
 The 2.x.x versions are for Bitbucket Server &gt;= 4.0.0
 
-=== 2.1.0 (2015-12-21)
+=== 2.1.0 (2016-01-06)
 
 This version includes the following changes:
 
