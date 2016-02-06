@@ -48,14 +48,14 @@ define('asciidoc/asciidoc-renderer', [
             var options = Opal.hash({'to_file': false, 'safe': 'secure', 'attributes': attributes});
             var html = Opal.Asciidoctor.$convert(content, options);
             this.$container.html(html);
-            postProcess(this.$container, options);
+            postProcess(this.$container, options, asciiDocRawUrl);
         } catch (e) {
             return;
         }
     };
 
 
-    function postProcess($content, options) {
+    function postProcess($content, options, asciiDocRawUrl) {
 
         var attributes = [];
 
@@ -64,6 +64,7 @@ define('asciidoc/asciidoc-renderer', [
         }
 
         applyHighlighting($content, 'highlightjs', '');
+        handleImages($content, asciiDocRawUrl);
     }
 
     function applyHighlighting($content, highlighter, sourceLanguage) {
@@ -109,6 +110,25 @@ define('asciidoc/asciidoc-renderer', [
                 $parent.addClass(language);
             }
         });
+    }
+
+    /**
+     * Handle images and convert relative image locations to absolute URLs
+     */
+    function handleImages($content, asciiDocRawUrl, commitHash) {
+        $('img', $content).each(function () {
+            if(!this.getAttribute('src').startsWith('http'))
+                this.src = getBaseUrl(asciiDocRawUrl) + this.getAttribute('src') + '?raw';
+        });
+    }
+
+    /**
+     * Return base Url of the AsciiDoc file
+     * @param AsciiDoc URL
+     * @returns {string} base Url of the AsciiDoc file
+     */
+    function getBaseUrl(asciiDocRawUrl) {
+        return asciiDocRawUrl.substring(0, asciiDocRawUrl.lastIndexOf('/')+1);
     }
 
     AsciiDocRenderer.prototype.destroy = function() {
