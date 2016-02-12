@@ -30,6 +30,7 @@
         <dependency>com.atlassian.bitbucket.server.bitbucket-web:global</dependency>
         <dependency>${project.groupId}.${project.artifactId}:asciidoctor</dependency>
         <dependency>${project.groupId}.${project.artifactId}:highlight</dependency>
+        <dependency>${project.groupId}.${project.artifactId}:mathjax</dependency>
     </client-resource>
 
     <client-resource key="asciidoctor" name="Asciidoctor JS Library">
@@ -41,5 +42,9 @@
         <resource type="download" name="highlight.js" location="/static/lib/highlight/highlight.js" />
         <directory location="/static/lib/highlight" />
     </client-resource>
-
+    
+    <client-resource key="mathjax" name="MathJax JS Library">
+        <resource type="download" name="mathjax-loader.js" location="/static/lib/mathjax/mathjax-loader.js" />
+        <directory location="/static/lib/mathjax" />
+    </client-resource>
 </atlassian-plugin>
