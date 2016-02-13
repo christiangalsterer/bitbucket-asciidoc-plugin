@@ -1,3 +1,32 @@
+## Version 9.1.0
+
+New languages:
+
+- *Stan* by [Brendan Rocks][]
+- *BASIC* by [Raphaël Assénat][]
+- *GAUSS* by [Matt Evans][]
+- *DTS* by [Martin Braun][]
+- *Arduino* by [Stefania Mellai][]
+
+New Styles:
+
+- *Arduino Light* by [Stefania Mellai][]
+
+Improvements to existing languages and styles:
+
+- Handle return type annotations in Python
+- Allow shebang headers in Javascript
+- Support strings in Rust meta
+- Recognize `struct` as a class-level definition in Rust
+- Recognize b-prefixed chars and strings in Rust
+- Better numbers handling in Verilog
+
+[Brendan Rocks]: http://brendanrocks.com
+[Raphaël Assénat]: https://github.com/raphnet
+[Matt Evans]: https://github.com/matthewevans
+[Martin Braun]: https://github.com/mbr0wn
+[Stefania Mellai]: https://github.com/smellai
+
 ## Version 9.0.0
 
 The new major version brings a reworked styling system. Highlight.js now defines
@@ -130,7 +159,7 @@ New languages:
 - *AutoIt* by Manh Tuan from [J2TeaM][]
 - *Toml* (ini extension) by [Guillaume Gomez][]
 
-New Styles:
+New styles:
 
 - *Hopscotch* by [Jan T. Sott][]
 - *Grayscale* by [MY Sun][]
@@ -172,7 +201,7 @@ New languages:
 - *armasm* by [Dan Panzarella][]
 - *TP* by [Jay Strybis][]
 
-New Styles:
+New styles:
 
 - *Atelier Cave*, *Atelier Estuary*,
   *Atelier Plateau* and *Atelier Savanna* by [Bram de Haan][]
@@ -209,7 +238,7 @@ New languages:
 - *Fortran* by [Anthony Scemama][] and [Thomas Applencourt][]
 - *Kotlin* by [Sergey Mashkov][]
 
-New Styles:
+New styles:
 
 - *Agate* by [Taufik Nurrohman][]
 - *Darkula* by [Jet Brains][]

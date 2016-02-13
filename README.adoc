@@ -12,11 +12,25 @@ The plugin is available in the https://marketplace.atlassian.com/plugins/org.chr
 
 The 1.x.x versions are for Bitbucket Server &lt; 4.0.0
 
-Coming Soon!
+This depends on the number of https://github.com/christiangalsterer/bitbucket-asciidoc-plugin/issues/7[votes].
 
 == 2.x.x
 
 The 2.x.x versions are for Bitbucket Server &gt;= 4.0.0
+
+=== 2.3.0 (2016-02-13)
+
+This version includes the following changes:
+
+* Syntax highlighting for AsciiMath and LaTeX syntax using https://www.mathjax.org[MathJax]. Thanks to https://github.com/stuwhite[stuwhite].
+* Update to asciidoctor.js 1.5.4
+* Update to highlight.js 9.1.0
+
+=== 2.2.0 (2016-02-06)
+
+This version includes the following changes:
+
+* Rendering of relative image locations
 
 === 2.1.0 (2016-01-06)
 

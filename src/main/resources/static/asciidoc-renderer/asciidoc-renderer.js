@@ -44,7 +44,7 @@ define('asciidoc/asciidoc-renderer', [
         });
 
         try {
-            var attributes =  Opal.hash({'source-highlighter': 'highlightjs', 'stylesheet': 'idea.css', 'linkcss!': '', 'copycss!': '', 'showtitle': ''});
+            var attributes =  Opal.hash({'source-highlighter': 'highlightjs', 'stylesheet': 'idea.css', 'linkcss!': '', 'copycss!': '', 'showtitle': '', 'stem!': ''});
             var options = Opal.hash({'to_file': false, 'safe': 'secure', 'attributes': attributes});
             var html = Opal.Asciidoctor.$convert(content, options);
             this.$container.html(html);
