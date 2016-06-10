@@ -39,7 +39,7 @@ define('asciidoc/asciidoc-handler', [
         // Check if asciidoc file
         var extension = getFileExtension(fileChange.path);
         var isAsciidoc = false;
-        if (extension.match('asciidoc|adoc|ad|asc'))
+        if (extension.match('^asciidoc$|^adoc$|^ad$|^asc$'))
             isAsciidoc = true;
 
         if (isAsciidoc && options.contentMode === 'diff') {
