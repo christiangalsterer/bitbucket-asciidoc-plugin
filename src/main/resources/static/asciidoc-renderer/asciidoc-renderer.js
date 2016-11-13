@@ -31,7 +31,7 @@ define('asciidoc/asciidoc-renderer', [
     };
 
 
-    AsciiDocRenderer.prototype.render = function(asciiDocRawUrl) {
+    AsciiDocRenderer.prototype.render = function(asciiDocRawUrl, commitHash) {
         var content;
         $.ajax({
             url : asciiDocRawUrl,
@@ -48,14 +48,14 @@ define('asciidoc/asciidoc-renderer', [
             var options = Opal.hash({'to_file': false, 'safe': 'secure', 'attributes': attributes});
             var html = Opal.Asciidoctor.$convert(content, options);
             this.$container.html(html);
-            postProcess(this.$container, options, asciiDocRawUrl);
+            postProcess(this.$container, options, asciiDocRawUrl, commitHash);
         } catch (e) {
             return;
         }
     };
 
 
-    function postProcess($content, options, asciiDocRawUrl) {
+    function postProcess($content, options, asciiDocRawUrl, commitHash) {
 
         var attributes = [];
 
@@ -64,7 +64,7 @@ define('asciidoc/asciidoc-renderer', [
         }
 
         applyHighlighting($content, 'highlightjs', '');
-        handleImages($content, asciiDocRawUrl);
+        handleImages($content, asciiDocRawUrl, commitHash);
     }
 
     function applyHighlighting($content, highlighter, sourceLanguage) {
@@ -118,7 +118,7 @@ define('asciidoc/asciidoc-renderer', [
     function handleImages($content, asciiDocRawUrl, commitHash) {
         $('img', $content).each(function () {
             if(!this.getAttribute('src').startsWith('http'))
-                this.src = getBaseUrl(asciiDocRawUrl) + this.getAttribute('src') + '?raw';
+                this.src = getBaseUrl(asciiDocRawUrl) + this.getAttribute('src') + '?at=' + commitHash + '&raw';
         });
     }
 

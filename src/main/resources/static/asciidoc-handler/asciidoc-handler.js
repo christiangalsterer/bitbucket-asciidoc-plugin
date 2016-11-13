@@ -26,10 +26,17 @@ define('asciidoc/asciidoc-handler', [
         var projectKey = fileChange.repository.project.key;
         var repoSlug = fileChange.repository.slug;
         var path = fileChange.path.components.join('/');
-        var revisionId = fileChange.commitRange.untilRevision.id;
+        var commitHash = getCommitHash(fileChange);
 
         return AJS.contextPath() + AJS.format('/projects/{0}/repos/{1}/browse/{2}?at={3}&raw',
-            projectKey, repoSlug, path, encodeURIComponent(revisionId));
+            projectKey, repoSlug, path, encodeURIComponent(commitHash));
+    }
+
+    /**
+     * @returns commit hash for file
+     */
+    function getCommitHash(fileChange) {
+        return fileChange.commitRange.untilRevision.id;
     }
 
     // Register a file-handler for asciidoc files
@@ -53,7 +60,8 @@ define('asciidoc/asciidoc-handler', [
                 // When web-resources successfully loaded, create a AsciiDocView
                 var AsciiDocView = require('asciidoc/asciidoc-view');
                 var fileUrl = getRawUrl(fileChange);
-                var view = new AsciiDocView(options.$container, fileUrl);
+                var commitHash = getCommitHash(fileChange);
+                var view = new AsciiDocView(options.$container, fileUrl, commitHash);
 
                 deferred.resolve(view);
             }).fail(function() {
