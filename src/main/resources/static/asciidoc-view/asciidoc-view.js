@@ -13,11 +13,11 @@ define('asciidoc/asciidoc-view', [
      * @param asciiDocRawUrl - raw url to the asciidoc file
      * @constructor
      */
-    function AsciiDocView($container, asciiDocRawUrl) {
+    function AsciiDocView($container, asciiDocRawUrl, commitHash) {
         this.$view = $(bitbucket.feature.fileContent.asciidoc.view());
         this.$container = $container.html(this.$view);
         this.asciiDocRenderer = new AsciiDocRenderer(this.$view);
-        this.asciiDocRenderer.render(asciiDocRawUrl);
+        this.asciiDocRenderer.render(asciiDocRawUrl, commitHash);
     }
 
     /**
