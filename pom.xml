@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.christiangalsterer.bitbucket.server</groupId>
     <artifactId>bitbucket-asciidoc-plugin</artifactId>
-    <version>2.3.2</version>
+    <version>3.0.0</version>
 
     <organization>
         <name>Christian Galsterer</name>
@@ -14,9 +14,9 @@
     <packaging>atlassian-plugin</packaging>
 
     <properties>
-        <bitbucket.version>4.0.0</bitbucket.version>
+        <bitbucket.version>5.0.0</bitbucket.version>
         <bitbucket.data.version>${bitbucket.version}</bitbucket.data.version>
-        <amps.version>6.1.0</amps.version>
+        <amps.version>6.3.0</amps.version>
         <plugin.testrunner.version>1.2.0</plugin.testrunner.version>
         <maven-compiler-plugin>3.3</maven-compiler-plugin>
     </properties>

@@ -8,11 +8,16 @@ The plugin is available in the https://marketplace.atlassian.com/plugins/org.chr
 
 = Releases
 
-== 1.x.x
+== 3.x.x
 
-The 1.x.x versions are for Bitbucket Server &lt; 4.0.0
+The 3.x.x versions are for Bitbucket Server &gt;= 5.0.0
 
-This depends on the number of https://github.com/christiangalsterer/bitbucket-asciidoc-plugin/issues/7[votes].
+=== 3.0.0 (2017-05-07)
+
+This version includes the following changes:
+
+* Compatibility with Bitbucket 5.0.0
+
 
 == 2.x.x
 
@@ -57,6 +62,10 @@ This is the first release of the add-on. It provides the following features:
 
 * Rendering of AsciiDoc documents in the source view
 * Usage of https://github.com/asciidoctor/asciidoctor.js[asciidoctor.js 1.5.3-preview.5]
+
+== 1.x.x
+
+No further support planned for Bitbucket Server &lt; 4.0.0
 
 = License
 
