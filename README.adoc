@@ -4,7 +4,7 @@ An add-on for https://www.atlassian.com/software/bitbucket/server[Atlassian Bitb
 
 = Installation
 
-The plugin is available in the https://marketplace.atlassian.com/plugins/org.christiangalsterer.stash-filehooks-plugin[Atlassian Marketplace] and can be installed directly in Bitbucket Server using the Universal Plugin Manager (UPM), see https://marketplace.atlassian.com/plugins/org.christiangalsterer.bitbucket-asciidoc-plugin#tabs-installation[here] for details.
+The plugin is available in the https://marketplace.atlassian.com/plugins/org.christiangalsterer.bitbucket.server.bitbucket-asciidoc-plugin/server/overview[Atlassian Marketplace] and can be installed directly in Bitbucket Server using the Universal Plugin Manager (UPM), see https://marketplace.atlassian.com/plugins/org.christiangalsterer.bitbucket-asciidoc-plugin#tabs-installation[here] for details.
 
 = Releases
 
