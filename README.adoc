@@ -12,6 +12,13 @@ The plugin is available in the https://marketplace.atlassian.com/plugins/org.chr
 
 The 3.x.x versions are for Bitbucket Server &gt;= 5.0.0
 
+=== 3.1.0 (2017-10)
+
+This version includes the following changes:
+
+* https://github.com/christiangalsterer/bitbucket-asciidoc-plugin/issues/9[Improved support for file include directives]
+* Support for `env-bitbucket` and `env`:`bitbucket` document attributes for conditional rendering, see also http://asciidoctor.org/docs/user-manual/#conditional-preprocessor-directives
+
 === 3.0.0 (2017-05-07)
 
 This version includes the following changes:
@@ -21,7 +28,14 @@ This version includes the following changes:
 
 == 2.x.x
 
-The 2.x.x versions are for Bitbucket Server &gt;= 4.0.0
+The 2.x.x versions are for Bitbucket Server &gt;= 4.0.0 and &lt; 5.0.0
+
+=== 2.4.0 (2017-10-28)
+
+This version includes the following changes:
+
+* https://github.com/christiangalsterer/bitbucket-asciidoc-plugin/issues/9[Improved support for file include directives]
+* Support for `env-bitbucket` and `env`:`bitbucket` document attributes for conditional rendering, see also http://asciidoctor.org/docs/user-manual/#conditional-preprocessor-directives
 
 === 2.3.2 (2016-11-13)
 
@@ -65,7 +79,7 @@ This is the first release of the add-on. It provides the following features:
 
 == 1.x.x
 
-No further support planned for Bitbucket Server &lt; 4.0.0
+The 1.x.x versions were originally reserved for Bitbucket Server &lt; 4.0.0. No releases planned anymore.
 
 = License
 

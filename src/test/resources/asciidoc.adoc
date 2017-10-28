@@ -1,0 +1,418 @@
+= Asciidoc Plugin for Bitbucket Server: AsciiDoc Test Page
+Christian Galsterer <https://github.com/christiangalsterer/bitbucket-asciidoc-plugin>
+Version 1.0.0, 2017-10-21
+:sectnums:
+:toc:
+:toclevels: 4
+:toc-title: Table of Content
+:experimental:
+:description: Example AsciiDoc document
+:keywords: AsciiDoc
+:includedir: include
+:imagesdir: include
+
+= Document Title (Level 0)
+
+== Level 1 Section
+
+=== Level 2 Section
+
+==== Level 3 Section
+
+===== Level 4 Section
+
+====== Level 5 Section
+
+== Environment Info
+
+AsciiDoc implementation
+ifdef::asciidoctor-version[Asciidoctor]
+ifdef::asciidoc-version[AsciiDoc Python]
+
+asciidoctor-version::
+{asciidoctor-version}
+
+safe-mode-name::
+{safe-mode-name}
+
+env::
+{env}
+
+Rendering mode footnoteref:[calculated]::
+ifdef::embedded[embedded]
+ifndef::embedded[standalone]
+
+== File Info
+
+docname::
+{docname}
+
+docfile::
+ifdef::docfile[{docfile}]
+ifndef::docfile[_n/a_]
+
+docdir::
+ifeval::["{docdir}" != ""]
+{docdir}
+endif::[]
+ifeval::["{docdir}" == ""]
+_n/a_
+endif::[]
+
+doctitle::
+{doctitle}
+
+author::
+{author} ({email})
+
+revision::
+{revnumber}
+
+backend::
+{backend}
+
+basebackend::
+{basebackend}
+
+docfilesuffix::
+{docfilesuffix}
+
+outfilesuffix::
+{outfilesuffix}
+
+doctype::
+{doctype}
+
+docdate @ doctime::
+{docdate} @ {doctime}
+
+localdate @ localtime::
+{localdate} @ {localtime}
+
+includedir::
+{includedir}
+
+== Text Formatting
+
+This is normal text
+
+*This is bold text*
+
+This is **bold** character
+
+_This is cursiv text_
+
+This is __cursiv_ character
+
+`This is mono text`
+
+This is ``mono`` character
+
+[.line-through]#This is striked through#
+
+``This text is double quoted''
+
+`This text is single quoted'.
+
+^super^
+
+~sub~
+
+== Lists
+
+=== Unnumbered Lists
+
+.Unnumbered Lists
+* Level 1
+** Level 2
+*** Level 3
+**** Level 4
+***** Level 5
+
+=== Numbered Lists
+
+.Numbered Lists
+. Level 1
+.. Level 2
+... Level 3
+.... Level 4
+..... Level 5
+
+=== Additional Blocks
+
+* Listing1
+* Listing2
++
+image::sunset.jpg[]
+
+== Labelled Lists
+
+CPU:: The brain of the computer
+Hard Drive:: Permanent storage for operating system and/or user files.
+
+[horizontal]
+CPU:: The brain of the computer
+Hard Drive:: Permanent storage for operating system and/or user files.
+
+== Footnotes
+
+A statement.footnote:[Clarification about this statement.]
+
+A bold statement.footnoteref:[disclaimer,Opinions are my own.]
+
+Another bold statement.footnoteref:[disclaimer]
+
+== Menus and Buttons
+
+menu:View[Zoom > Reset]
+
+Press the btn:[OK] button when you are finished.
+
+== Keyboard Shortcuts
+
+kbd:[Alt+F11] - Toggle Full Screen Mode in the Eclipse IDE
+
+== Images and Graphics
+
+=== Block Images
+
+==== External Block Image
+image::http://asciidoctor.org/images/octocat.jpg[GitHub mascot]
+
+==== Internal Block Image
+image::sunset.jpg[]
+
+=== Inline Image
+
+Click image:play.png[Play, title="Play"] to get the party started.
+
+=== Inline Icons
+
+:icons: font
+
+icon:comment[] This is a comment icon
+
+icon:file[] And a file icon
+
+icon:battery-full[] And a battery icon
+
+== Links
+
+=== External Links
+
+http://asciidoctor.org - automatic!
+
+http://asciidoctor.org[Asciidoctor]
+
+=== Relative Links
+
+link:include/include.adoc[Include File]
+
+=== Mail Links
+
+devel@discuss.arquillian.org
+
+mailto:devel@discuss.arquillian.org[Discuss Arquillian]
+
+mailto:devel-join@discuss.arquillian.org[Subscribe, Subscribe me, I want to join!]
+
+== Includes
+
+=== Include File
+
+==== Include Using Relative Path
+
+include::include/include.adoc[]
+
+==== Include Using Variables
+
+include::{includedir}/include.adoc[]
+
+==== Java Source Code Included from File
+
+[source,java]
+----
+include::include/Java.java[]
+----
+
+
+=== Include URI
+include::https://raw.githubusercontent.com/asciidoctor/asciidoctor/master/README.adoc[]
+
+== Tables
+
+=== Normal Table
+
+.This is the optional title of the table
+|===
+|Name of Column 1 |Name of Column 2
+
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|===
+
+=== Table with Header and Footer
+
+.Table with Header and Footer
+[options="header,footer"]
+|===
+|Name of Column 1 |Name of Column 2
+
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|===
+
+=== Table with Relative Width
+
+.with relative column widths (1,3)
+[cols="1,3",options="header"]
+|===
+| Name | Description
+| Testing
+| Table width
+|===
+
+
+=== Table with Defined Column Width Using Absolute Values
+
+.Title
+[cols="1,3",options="header"]
+|===
+|Name of Column 1 |Name of Column 2 |Name of Column 3
+
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+|Cell in column 3, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+|===
+
+=== Table with Defined Column Width Using Percentage Values
+
+.with asciidoc elements
+|===
+|Keyboard shortcut |List |Note |Button
+
+|kbd:[Ctrl+9]
+a|* Test 1
+* Test 2
+* Test 3
+a|
+[NOTE]
+====
+This is a good idea
+====
+|btn:[OK]
+
+|===
+
+== Source Code
+
+=== Java Source Code
+
+[source, java]
+----
+System.out.println("Hello");
+private int a;
+----
+
+=== Java Source Code with Line Numbers
+
+[source, java, numbered]
+----
+System.out.println("Hello");
+private int a;
+----
+
+=== Java Source Code with Callouts
+
+[source, java, numbered]
+----
+System.out.println("Hello");  # <1>
+private int a;
+----
+<1> Imports the library
+
+=== Java Source Code Included from File
+[source,java]
+----
+include::include/Java.java[]
+----
+
+== Definitions
+
+[[defs]]
+term::
+  definition
+[[another_term]]another term::
+
+  another definition
+
+== Quotes
+
+____
+AsciiDoc is so powerful!
+____
+
+This verse comes to mind.
+
+[verse]
+La la la
+
+[quote, Sir Arthur Conan Doyle, The Adventures of Sherlock Holmes]
+____
+When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.
+____
+
+== Admonitions
+
+NOTE: AsciiDoc is quite cool, you should try it!
+
+TIP: AsciiDoc is quite cool, you should try it!
+
+IMPORTANT: AsciiDoc is quite cool, you should try it!
+
+CAUTION: AsciiDoc is quite cool, you should try it!
+
+WARNING: AsciiDoc is quite cool, you should try it!
+
+== Replacements
+
+Copyright: (C)
+
+Registered: (R)
+
+Trademark: (TM)
+
+Em Dash: --
+
+Ellipses: ...
+
+Right Single Arrow: ->
+
+Right Double Arrow: =>
+
+Left Single Arrow: <-
+
+Left Double Arrow: <=
+
+Apostrophe: Sam's
+
+== Conditional Rendering
+
+=== Render only on Bitbucket using env-bitbucket Attribute
+
+ifdef::env-bitbucket[]
+I'm on Atlassian Bitbucket Server!
+endif::[]
+ifndef::env-bitbucket[]
+I'm clearly somewhere else right now.
+endif::[]
