@@ -44,7 +44,7 @@ define('asciidoc/asciidoc-renderer', [
         });
 
         try {
-            var attributes =  Opal.hash({'source-highlighter': 'highlightjs', 'stylesheet': 'idea.css', 'linkcss!': '', 'copycss!': '', 'showtitle': '', 'stem!': ''});
+            var attributes =  Opal.hash({'source-highlighter': 'highlightjs', 'stylesheet': 'idea.css', 'linkcss!': '', 'copycss!': '', 'showtitle': '', 'stem!': '', 'env-bitbucket': '', 'env': 'bitbucket'});
             var options = Opal.hash({'to_file': false, 'safe': 'secure', 'attributes': attributes});
             var html = Opal.Asciidoctor.$convert(content, options);
             this.$container.html(html);
@@ -65,6 +65,7 @@ define('asciidoc/asciidoc-renderer', [
 
         applyHighlighting($content, 'highlightjs', '');
         handleImages($content, asciiDocRawUrl, commitHash);
+        handleLinks($content, asciiDocRawUrl, commitHash);
     }
 
     function applyHighlighting($content, highlighter, sourceLanguage) {
@@ -119,6 +120,16 @@ define('asciidoc/asciidoc-renderer', [
         $('img', $content).each(function () {
             if(!this.getAttribute('src').startsWith('http'))
                 this.src = getBaseUrl(asciiDocRawUrl) + this.getAttribute('src') + '?at=' + commitHash + '&raw';
+        });
+    }
+
+    /**
+     * Handle links and convert relative locations to absolute URLs
+     */
+    function handleLinks($content, asciiDocRawUrl, commitHash) {
+        $('a', $content).each(function () {
+            if(!this.getAttribute('href').startsWith('http'))
+                this.href = getBaseUrl(asciiDocRawUrl) + this.getAttribute('href') + '?at=' + commitHash;
         });
     }
 

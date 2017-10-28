@@ -1,167 +1,418 @@
-# Asciidoctor.js: AsciiDoc in JavaScript powered by Asciidoctor
-Dan Allen <https://github.com/mojavelinux[@mojavelinux]>; Guillaume Grossetie <https://github.com/mogztter[@mogztter]>; Anthonny Quérouil <https://github.com/anthonny[@anthonny]>
-:idprefix:
-:idseparator: -
-:uri-nodejs: http://nodejs.org
-:uri-opal: http://opalrb.org
-:uri-repo: https://github.com/asciidoctor/asciidoctor.js
-:uri-freesoftware: https://www.gnu.org/philosophy/free-sw.html
-:uri-rel-file-base: link:
-:uri-contribute: {uri-rel-file-base}CONTRIBUTING.adoc
-:uri-user-manual: {uri-rel-file-base}manual.adoc
-:license: {uri-repo}/blob/master/LICENSE
-:includedir: include
+= Asciidoc Plugin for Bitbucket Server: AsciiDoc Test Page
+Christian Galsterer <https://github.com/christiangalsterer/bitbucket-asciidoc-plugin>
+Version 1.0.0, 2017-10-21
+:sectnums:
+:toc:
+:toclevels: 4
+:toc-title: Table of Content
 :experimental:
-:endash:
+:description: Example AsciiDoc document
+:keywords: AsciiDoc
+:includedir: include
+:imagesdir: include
 
-ifdef::env-github[]
-image:http://img.shields.io/travis/asciidoctor/asciidoctor.js.svg[Travis build status, link=https://travis-ci.org/asciidoctor/asciidoctor.js]
-image:http://img.shields.io/npm/v/asciidoctor.js.svg[npm version, link=https://www.npmjs.org/package/asciidoctor.js]
-image:https://ci.appveyor.com/api/projects/status/i69sqvvyr95sf6i7/branch/master?svg=true[Appveyor build status, link=https://ci.appveyor.com/project/asciidoctor/asciidoctor-js]
+= Document Title (Level 0)
+
+== Level 1 Section
+
+=== Level 2 Section
+
+==== Level 3 Section
+
+===== Level 4 Section
+
+====== Level 5 Section
+
+== Environment Info
+
+AsciiDoc implementation
+ifdef::asciidoctor-version[Asciidoctor]
+ifdef::asciidoc-version[AsciiDoc Python]
+
+asciidoctor-version::
+{asciidoctor-version}
+
+safe-mode-name::
+{safe-mode-name}
+
+env::
+{env}
+
+Rendering mode footnoteref:[calculated]::
+ifdef::embedded[embedded]
+ifndef::embedded[standalone]
+
+== File Info
+
+docname::
+{docname}
+
+docfile::
+ifdef::docfile[{docfile}]
+ifndef::docfile[_n/a_]
+
+docdir::
+ifeval::["{docdir}" != ""]
+{docdir}
+endif::[]
+ifeval::["{docdir}" == ""]
+_n/a_
 endif::[]
 
-Asciidoctor.js brings AsciiDoc to the JavaScript world!
+doctitle::
+{doctitle}
 
-This project uses {uri-opal}[Opal] to transpile http://asciidoctor.org[Asciidoctor], a modern implementation of AsciiDoc, from Ruby to JavaScript to produce _asciidoctor.js_.
-The _asciidoctor.js_ script can be run on any JavaScript platform, including Node.js, Nashorn and, of course, a web browser.
+author::
+{author} ({email})
 
-## Introduction
+revision::
+{revnumber}
 
-You can use Asciidoctor.js either for back-end development using {uri-nodejs}[Node.js] or front-end development using a browser.
+backend::
+{backend}
 
-## Front-end development
+basebackend::
+{basebackend}
 
-.Installing Asciidoctor.js with Bower
+docfilesuffix::
+{docfilesuffix}
 
-    $ bower install asciidoctor.js --save
+outfilesuffix::
+{outfilesuffix}
 
-Once the package installed, you can add the following `script` tag to your HTML page:
+doctype::
+{doctype}
 
-```html
-<script src="bower_components/asciidoctor.js/dist/asciidoctor-all.min.js"></script>
-<!-- If you need docbook backends -->
-<script src="bower_components/asciidoctor.js/dist/asciidoctor-docbook.min.js"></script>
-```
+docdate @ doctime::
+{docdate} @ {doctime}
 
-If you don't want to use *extensions*, you can load files separately :
+localdate @ localtime::
+{localdate} @ {localtime}
 
-```html
-<script src="bower_components/opal/opal/current/opal.min.js"></script>
-<script src="bower_components/asciidoctor.js/dist/asciidoctor-core.min.js"></script>
-<!-- If you need docbook backends -->
-<script src="bower_components/asciidoctor.js/dist/asciidoctor-docbook.min.js"></script>
-```
+includedir::
+{includedir}
 
-Here is a simple example that converts AsciiDoc to HTML5 using the `doctype: 'inline'` option and `showtitle` attribute:
+== Text Formatting
 
-.sample.js
+This is normal text
 
-```javascript
-var content = "http://asciidoctor.org[*Asciidoctor*] " +
-    "running on http://opalrb.org[_Opal_] " +
-    "brings AsciiDoc to the browser!";
-var options = Opal.hash({doctype: 'inline', attributes: ['showtitle']});
-var html = Opal.Asciidoctor.$convert(content, options); // <1>
-console.log(html); // <2>
-```
+*This is bold text*
 
-<1> Convert AsciiDoc content to HTML5 using Asciidoctor.js
-<2> Print the HTML5 output to the console
+This is **bold** character
 
-## Back-end development
+_This is cursiv text_
 
-.Installing Asciidoctor.js with npm
+This is __cursiv_ character
 
-    $ npm install asciidoctor.js --save
+`This is mono text`
 
-Once the package is installed, the first thing to do is to load the `asciidoctor.js` module using `require`, then you're ready to start using the API:
+This is ``mono`` character
 
-.sample.js
+[.line-through]#This is striked through#
 
-```javascript
-var asciidoctor = require('asciidoctor.js')(); // <1>
-var opal = asciidoctor.Opal; // <2>
+``This text is double quoted''
 
-var processor = null;
-var useExtensions = true;
+`This text is single quoted'.
 
-if (useExtensions) {
-  processor = asciidoctor.Asciidoctor(true); // <3>
-}
-else {
-  processor = asciidoctor.Asciidoctor(); // <4>
-}
+^super^
 
-var content = "http://asciidoctor.org[*Asciidoctor*] " +
-    "running on http://opalrb.org[_Opal_] " +
-    "brings AsciiDoc to Node.js!";
-var options = opal.hash({doctype: 'inline', attributes: ['showtitle']});
-var html = processor.$convert(content, options); // <5>
-console.log(html); // <6>
-```
+~sub~
 
-<1> Load the Asciidoctor.js library
-<2> Retrieve and alias the top-level Opal namespace
-<3> Instantiate Asciidoctor with extensions enabled
-<4> Instantiate Asciidoctor without extensions
-<5> Convert AsciiDoc content to HTML5 using Asciidoctor.js
-<6> Print the HTML5 output to the console
+== Lists
 
-Save the file as `sample.js` and run it using the `node` command:
+=== Unnumbered Lists
 
-    $ node sample.js
+.Unnumbered Lists
+* Level 1
+** Level 2
+*** Level 3
+**** Level 4
+***** Level 5
 
-You should see the following output in your terminal:
+=== Numbered Lists
 
-[.output]
-....
-<a href="http://asciidoctor.org"><strong>Asciidoctor</strong></a> running on <a href="http://opalrb.org"><em>Opal</em></a> brings AsciiDoc to Node.js!</p>
-....
+.Numbered Lists
+. Level 1
+.. Level 2
+... Level 3
+.... Level 4
+..... Level 5
 
-## Advanced topics
+=== Additional Blocks
 
-If you want to know more about _Asciidoctor.js_, please read the {uri-user-manual}[User Manual].
+* Listing1
+* Listing2
++
+image::sunset.jpg[]
 
-## Contributing
+== Labelled Lists
 
-In the spirit of {uri-freesoftware}[free software], _everyone_ is encouraged to help improve this project.
-If you discover errors or omissions in the source code, documentation, or website content, please don't hesitate to submit an issue or open a pull request with a fix.
-New contributors are always welcome!
+CPU:: The brain of the computer
+Hard Drive:: Permanent storage for operating system and/or user files.
 
-The {uri-contribute}[Contributing] guide provides information on how to contribute.
+[horizontal]
+CPU:: The brain of the computer
+Hard Drive:: Permanent storage for operating system and/or user files.
 
-## Copyright
+== Footnotes
 
-Copyright (C) 2015 Dan Allen, Guillaume Grossetie, Anthonny Quérouil and the Asciidoctor Project.
-Free use of this software is granted under the terms of the MIT License.
+A statement.footnote:[Clarification about this statement.]
 
-See the {license}[LICENSE] file for details.
+A bold statement.footnoteref:[disclaimer,Opinions are my own.]
 
-ifdef::env-bitbucket[:outfilesuffix: .adoc]
+Another bold statement.footnoteref:[disclaimer]
 
-See the <<README#,README>>.
+== Menus and Buttons
 
-We could also write the link as link:README{outfilesuffix}[README].
+menu:View[Zoom > Reset]
 
-[[app-listing]]
-[source,ruby]
-.app.rb
-----
-require 'sinatra'
+Press the btn:[OK] button when you are finished.
 
-get '/hi' do
-  "Hello World!"
-end
-----
-endif::[]
+== Keyboard Shortcuts
 
-# Include File
+kbd:[Alt+F11] - Toggle Full Screen Mode in the Eclipse IDE
+
+== Images and Graphics
+
+=== Block Images
+
+==== External Block Image
+image::http://asciidoctor.org/images/octocat.jpg[GitHub mascot]
+
+==== Internal Block Image
+image::sunset.jpg[]
+
+=== Inline Image
+
+Click image:play.png[Play, title="Play"] to get the party started.
+
+=== Inline Icons
+
+:icons: font
+
+icon:comment[] This is a comment icon
+
+icon:file[] And a file icon
+
+icon:battery-full[] And a battery icon
+
+== Links
+
+=== External Links
+
+http://asciidoctor.org - automatic!
+
+http://asciidoctor.org[Asciidoctor]
+
+=== Relative Links
+
+link:include/include.adoc[Include File]
+
+=== Mail Links
+
+devel@discuss.arquillian.org
+
+mailto:devel@discuss.arquillian.org[Discuss Arquillian]
+
+mailto:devel-join@discuss.arquillian.org[Subscribe, Subscribe me, I want to join!]
+
+== Includes
+
+=== Include File
+
+==== Include Using Relative Path
 
 include::include/include.adoc[]
+
+==== Include Using Variables
+
 include::{includedir}/include.adoc[]
+
+==== Java Source Code Included from File
 
 [source,java]
 ----
 include::include/Java.java[]
 ----
 
+
+=== Include URI
+include::https://raw.githubusercontent.com/asciidoctor/asciidoctor/master/README.adoc[]
+
+== Tables
+
+=== Normal Table
+
+.This is the optional title of the table
+|===
+|Name of Column 1 |Name of Column 2
+
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|===
+
+=== Table with Header and Footer
+
+.Table with Header and Footer
+[options="header,footer"]
+|===
+|Name of Column 1 |Name of Column 2
+
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|===
+
+=== Table with Relative Width
+
+.with relative column widths (1,3)
+[cols="1,3",options="header"]
+|===
+| Name | Description
+| Testing
+| Table width
+|===
+
+
+=== Table with Defined Column Width Using Absolute Values
+
+.Title
+[cols="1,3",options="header"]
+|===
+|Name of Column 1 |Name of Column 2 |Name of Column 3
+
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+|Cell in column 3, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+|===
+
+=== Table with Defined Column Width Using Percentage Values
+
+.with asciidoc elements
+|===
+|Keyboard shortcut |List |Note |Button
+
+|kbd:[Ctrl+9]
+a|* Test 1
+* Test 2
+* Test 3
+a|
+[NOTE]
+====
+This is a good idea
+====
+|btn:[OK]
+
+|===
+
+== Source Code
+
+=== Java Source Code
+
+[source, java]
+----
+System.out.println("Hello");
+private int a;
+----
+
+=== Java Source Code with Line Numbers
+
+[source, java, numbered]
+----
+System.out.println("Hello");
+private int a;
+----
+
+=== Java Source Code with Callouts
+
+[source, java, numbered]
+----
+System.out.println("Hello");  # <1>
+private int a;
+----
+<1> Imports the library
+
+=== Java Source Code Included from File
+[source,java]
+----
+include::include/Java.java[]
+----
+
+== Definitions
+
+[[defs]]
+term::
+  definition
+[[another_term]]another term::
+
+  another definition
+
+== Quotes
+
+____
+AsciiDoc is so powerful!
+____
+
+This verse comes to mind.
+
+[verse]
+La la la
+
+[quote, Sir Arthur Conan Doyle, The Adventures of Sherlock Holmes]
+____
+When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.
+____
+
+== Admonitions
+
+NOTE: AsciiDoc is quite cool, you should try it!
+
+TIP: AsciiDoc is quite cool, you should try it!
+
+IMPORTANT: AsciiDoc is quite cool, you should try it!
+
+CAUTION: AsciiDoc is quite cool, you should try it!
+
+WARNING: AsciiDoc is quite cool, you should try it!
+
+== Replacements
+
+Copyright: (C)
+
+Registered: (R)
+
+Trademark: (TM)
+
+Em Dash: --
+
+Ellipses: ...
+
+Right Single Arrow: ->
+
+Right Double Arrow: =>
+
+Left Single Arrow: <-
+
+Left Double Arrow: <=
+
+Apostrophe: Sam's
+
+== Conditional Rendering
+
+=== Render only on Bitbucket using env-bitbucket Attribute
+
+ifdef::env-bitbucket[]
+I'm on Atlassian Bitbucket Server!
+endif::[]
+ifndef::env-bitbucket[]
+I'm clearly somewhere else right now.
+endif::[]
