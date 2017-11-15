@@ -16,6 +16,12 @@ The 1.x.x versions were originally reserved for Bitbucket Server &lt; 4.0.0. No 
 
 The 2.x.x versions are for Bitbucket Server &gt;= 4.0.0 and &lt; 5.0.0
 
+=== 2.4.1 (2017-11-15)
+
+This version includes the following changes:
+
+* Fix: https://github.com/christiangalsterer/bitbucket-asciidoc-plugin/issues/20[Broken links in TOC]
+
 === 2.4.0 (2017-10-28)
 
 This version includes the following changes:
