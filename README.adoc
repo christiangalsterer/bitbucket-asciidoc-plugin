@@ -12,6 +12,12 @@ The plugin is available in the https://marketplace.atlassian.com/plugins/org.chr
 
 The 3.x.x versions are for Bitbucket Server &gt;= 5.0.0
 
+=== 3.1.1 (2017-11-15)
+
+This version includes the following changes:
+
+* Fix: https://github.com/christiangalsterer/bitbucket-asciidoc-plugin/issues/20[Broken links in TOC]
+
 === 3.1.0 (2017-10-28)
 
 This version includes the following changes:

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.christiangalsterer.bitbucket.server</groupId>
     <artifactId>bitbucket-asciidoc-plugin</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.1-SNAPSHOT</version>
 
     <organization>
         <name>Christian Galsterer</name>
