@@ -128,7 +128,7 @@ define('asciidoc/asciidoc-renderer', [
      */
     function handleLinks($content, asciiDocRawUrl, commitHash) {
         $('a', $content).each(function () {
-            if(!this.getAttribute('href').startsWith('http') && $(this).parents('.toc').size() == 0)
+            if(!this.getAttribute('href').startsWith('http') && !this.getAttribute('href').startsWith('#') && $(this).parents('.toc').size() == 0)
                 this.href = getBaseUrl(asciiDocRawUrl) + this.getAttribute('href') + '?at=' + commitHash;
         });
     }
